@@ -5,7 +5,7 @@
 
 <body>
 	<div class="row">
-		<div class="span2">
+		<div class="span3">
 			{{> dropdown}}
 			{{> listing}}
 		</div>
@@ -14,6 +14,11 @@
 
 <template name="listing">
 	<div class="player-table">
+		<div class="heading">
+			<span>Name</span>
+			<span>Overall Rank</span>
+			<span>Position Ranking</span>
+		</div>
 		{{#each players}}
 			{{> player}}
 		{{else}}
@@ -24,15 +29,16 @@
 		
 <template name="player">
 	<div class="player">
-		<span class="name" data-original-title="{{snippet}}" data-placement="right" data-toggle="tooltip" trigger="hover">{{name}}</span>
+		<span class="name" html="true" data-original-title="{{> player-tooltip}}" data-placement="right" data-toggle="tooltip" trigger="hover">{{name}}</span>
 		<span class="overallRank">{{overallRank}}</span>
 		<span class="positionRank">{{positionRank}}</span>
+		<span class="testing">{{> player-tooltip}}</span>
 	</div>
 </template>
 
 <template name="player-tooltip">
 	<div name="snippet">{{snippet}}</div>
-	<!--<table>
+	<table>
 		<tr>
 			<td>Year</td>
 			<td>Games</td>
@@ -52,28 +58,31 @@
 			<td>xBABIP</td>
 			<td>xBA</td>
 		</tr>
-	</table>-->
+		{{#each stats}}
+			{{> output-stats}}
+		{{/each}}
+	</table>
 </template>
 
 <template name="output-stats">
 	<tr>
-		<td></td>	
+		<td>{{year}}</td>	
 		<td>{{g}}</td>	
-		<td>stats.pa</td>	
-		<td>stats.r</td>	
-		<td>stats.hr</td>	
-		<td>stats.rbi</td>	
-		<td>stats.sb</td>	
-		<td>stats.babip</td>	
-		<td>stats.ba</td>	
-		<td>stats.ld</td>	
-		<td>stats.fb</td>	
-		<td>stats.hrPerFB</td>	
-		<td>stats.iso</td>	
-		<td>stats.psr</td>	
-		<td>stats.psrRank</td>	
-		<td>stats.xbabip</td>	
-		<td>stats.xba</td>	
+		<td>{{pa}}</td>	
+		<td>{{r}}</td>	
+		<td>{{hr}}</td>	
+		<td>{{rbi}}</td>	
+		<td>{{sb}}</td>	
+		<td>{{babip}}</td>	
+		<td>{{ba}}</td>	
+		<td>{{ld}}</td>	
+		<td>{{fb}}</td>	
+		<td>{{hrPerFB}}</td>	
+		<td>{{iso}}</td>	
+		<td>{{psr}}</td>	
+		<td>{{psrRank}}</td>	
+		<td>{{xbabip}}</td>	
+		<td>{{xba}}</td>	
 	</tr>
 </template>
 
