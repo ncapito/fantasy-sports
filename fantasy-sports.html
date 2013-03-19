@@ -1,0 +1,112 @@
+<head>
+  <title>fantasy-sports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="row">
+		<div class="span2">
+			{{> dropdown}}
+			{{> listing}}
+		</div>
+	</div>	
+	</body>
+
+<template name="listing">
+	<div class="player-table">
+		{{#each players}}
+			{{> player}}
+		{{else}}
+			<div class="player">There are no players currently setup</div>
+		{{/each}}
+	</div>
+</template>
+		
+<template name="player">
+	<div class="player">
+		<span class="name" data-original-title="{{snippet}}" data-placement="right" data-toggle="tooltip" trigger="hover">{{name}}</span>
+		<span class="overallRank">{{overallRank}}</span>
+		<span class="positionRank">{{positionRank}}</span>
+	</div>
+</template>
+
+<template name="player-tooltip">
+	<div name="snippet">{{snippet}}</div>
+	<!--<table>
+		<tr>
+			<td>Year</td>
+			<td>Games</td>
+			<td>Plate Appearances</td>
+			<td>Runs</td>
+			<td>Home Runs</td>
+			<td>RBI</td>
+			<td>Stolen Bases</td>
+			<td>BABIP</td>
+			<td>Batting Avg.</td>
+			<td>Line Drive %</td>
+			<td>Fly Ball %</td>
+			<td>HR/FB %</td>
+			<td>ISO</td>
+			<td>PSR</td>
+			<td>PSR Rank</td>
+			<td>xBABIP</td>
+			<td>xBA</td>
+		</tr>
+	</table>-->
+</template>
+
+<template name="output-stats">
+	<tr>
+		<td></td>	
+		<td>{{g}}</td>	
+		<td>stats.pa</td>	
+		<td>stats.r</td>	
+		<td>stats.hr</td>	
+		<td>stats.rbi</td>	
+		<td>stats.sb</td>	
+		<td>stats.babip</td>	
+		<td>stats.ba</td>	
+		<td>stats.ld</td>	
+		<td>stats.fb</td>	
+		<td>stats.hrPerFB</td>	
+		<td>stats.iso</td>	
+		<td>stats.psr</td>	
+		<td>stats.psrRank</td>	
+		<td>stats.xbabip</td>	
+		<td>stats.xba</td>	
+	</tr>
+</template>
+
+<template name="dropdown">
+	<div class="btn-group">
+		
+		<button class="btn">Ranking - {{sessionValue "name"}}</button>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu">
+			{{#each positions}}
+				{{#if subMenu}}
+					{{> dropdown-with-submenu}}
+				{{else}}
+					{{> add-dropdown-item}}
+				{{/if}}
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="dropdown-with-submenu">
+	<li class="dropdown-submenu">
+		<a tabindex="-1" href="#">{{name}}</a>
+		<ul class="dropdown-menu">
+			{{#each subMenu}}
+				<li name="{{name}}"><a href="#" tabindex="-1">{{text}}</a></li>
+			{{/each}}
+		</ul>
+	</li>
+</template>
+
+<template name="add-dropdown-item">
+	<li name="{{name}}">{{text}}</li>
+</template>

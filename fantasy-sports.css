@@ -1,0 +1,9 @@
+/* CSS declarations go here */
+
+.hidden {
+	display: none; 
+}
+
+.hover {
+	display : inline;
+}
