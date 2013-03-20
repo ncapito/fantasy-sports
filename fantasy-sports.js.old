@@ -18,9 +18,9 @@ if (Meteor.isClient) {
   Session.setDefault('name', 'Overall');
 
   var playerMap = {
-        "Overall" : Overall,
-        "Catchers" : Catchers,
-        "First Base" : FirstBase,
+    "Overall" : Overall,
+    "Catchers" : Catchers,
+    "First Base" : FirstBase,
 	"Second Base" : SecondBase,
 	"Shortstop" : Shortstop,
 	"Third Base" : ThirdBase,
