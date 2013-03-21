@@ -48,7 +48,11 @@
 		<th>{{text}}</th>
 		<th>{{overallRank}}</th>
 		<th>{{positionRank}}</th>
-        <th class='hidden'><div class='playerInfo'><div class='playerSummary '><blockquote>{{snippet}}</blockquote></div><div class='stats'>{{> player-tooltip}}</div></div>
+        <th class='hidden'>
+            <div class='playerInfo container-fluid'>
+                <div class='playerSummary row-fluid '><blockquote>{{snippet}}</blockquote></div>
+                <div class='stats row-fluid'>{{> player-tooltip}}</div>
+            </div>
     </tr>
 </template>
 
