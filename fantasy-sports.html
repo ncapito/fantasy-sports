@@ -3,23 +3,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
-	<div class="row">
-		<div class="span3">
-			{{> dropdown}}
-			{{> listing}}
-		</div>
-	</div>	
-	</body>
+<body >
+    <div class='container'>
+    	<div class="row">
+    		<div class="span3 pull-right">
+    			{{> dropdown}}
+    		</div>
+        </div>
+        <div class='row'>
+            <div class="span12">
+            {{> listing}}
+    		</div>
+    	</div>	
+    </div>
+</body>
 
 <template name="listing">
-	<div class="player-table">
-		<div class="heading">
-			<span>Name</span>
-			<span>Overall Rank</span>
-			<span>Position Ranking</span>
-		</div>
-		{{#each players}}
+	<div class="players">
+      	{{#each players}}
 			{{> player}}
 		{{else}}
 			<div class="player">There are no players currently setup</div>
@@ -29,38 +30,44 @@
 		
 <template name="player">
 	<div class="player">
-		<span class="name" html="true" data-original-title="{{> player-tooltip}}" data-placement="right" data-toggle="tooltip" trigger="hover">{{name}}</span>
-		<span class="overallRank">{{overallRank}}</span>
-		<span class="positionRank">{{positionRank}}</span>
-		<span class="testing">{{> player-tooltip}}</span>
+		<h1 class="name">{{name}}</h1>
+		<span class="displayBlock playerOverallRank">Overall Rank: {{overallRank}}</span>
+		<span class="displayBlock playerPositionRank">Position Rank: {{positionRank}}</span>
+        <br />
+		<div class='playerSummary'><blockquote>{{snippet}}</blockquote></div>
+        <div class="stats">{{> player-tooltip}}</div>
 	</div>
 </template>
 
 <template name="player-tooltip">
-	<div name="snippet">{{snippet}}</div>
-	<table>
-		<tr>
-			<td>Year</td>
-			<td>Games</td>
-			<td>Plate Appearances</td>
-			<td>Runs</td>
-			<td>Home Runs</td>
-			<td>RBI</td>
-			<td>Stolen Bases</td>
-			<td>BABIP</td>
-			<td>Batting Avg.</td>
-			<td>Line Drive %</td>
-			<td>Fly Ball %</td>
-			<td>HR/FB %</td>
-			<td>ISO</td>
-			<td>PSR</td>
-			<td>PSR Rank</td>
-			<td>xBABIP</td>
-			<td>xBA</td>
-		</tr>
+    
+	<table class='table table-striped table-bordered table-hover'>
+        <thead>
+            <tr>
+                <th>Year</th>
+    			<th>Games</th>
+    			<th>Plate Appearances</th>
+    			<th>Runs</th>
+    			<th>Home Runs</th>
+    			<th>RBI</th>
+    			<th>Stolen Bases</th>
+    			<th>BABIP</th>
+    			<th>Batting Avg.</th>
+    			<th>Line Drive %</th>
+    			<th>Fly Ball %</th>
+    			<th>HR/FB %</th>
+    			<th>ISO</th>
+    			<th>PSR</th>
+    			<th>PSR Rank</th>
+    			<th>xBABIP</th>
+    			<th>xBA</th>
+            </tr>
+      </thead>
+      <tbody>
 		{{#each stats}}
 			{{> output-stats}}
 		{{/each}}
+        </tbody>
 	</table>
 </template>
 
