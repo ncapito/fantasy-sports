@@ -1,0 +1,1 @@
+{"ts":1363904692010,"silentsave":true,"restoring":false,"patch":[[{"diffs":[[1,"Template.listing.rendered = function() {\n\t$(\"span.name\").tooltip();\n};\n"]],"start1":0,"start2":0,"length1":0,"length2":71}]],"length":71}
