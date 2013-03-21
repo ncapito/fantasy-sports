@@ -95,7 +95,6 @@
 
 <template name="dropdown">
 	<div class="btn-group">
-		
 		<button class="btn">Ranking - {{sessionValue "name"}}</button>
 		<button class="btn dropdown-toggle" data-toggle="dropdown">
 			<span class="caret"></span>
@@ -117,12 +116,12 @@
 		<a tabindex="-1" href="#">{{name}}</a>
 		<ul class="dropdown-menu">
 			{{#each subMenu}}
-				<li name="{{name}}"><a href="#" tabindex="-1">{{text}}</a></li>
+			    {{> add-dropdown-item}}
 			{{/each}}
 		</ul>
 	</li>
 </template>
 
 <template name="add-dropdown-item">
-	<li name="{{name}}">{{text}}</li>
+	<li name="{{name}}"><a href="#" tabindex="-1">{{text}}</a></li>
 </template>
