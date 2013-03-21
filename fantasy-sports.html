@@ -95,9 +95,7 @@
 
 <template name="dropdown">
 	<div class="btn-group">
-		<button class="btn">Ranking - {{sessionValue "name"}}</button>
-		<button class="btn dropdown-toggle" data-toggle="dropdown">
-			<span class="caret"></span>
+		<button class="btn dropdown-toggle" data-toggle="dropdown">Ranking - {{sessionValue "name"}} <span class="caret"></span>
 		</button>
 		<ul class="dropdown-menu">
 			{{#each positions}}
