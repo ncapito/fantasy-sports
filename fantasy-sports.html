@@ -61,10 +61,17 @@
 	<table class='table table-striped table-bordered table-hover'>
         <thead>
             <tr>
+		{{#if stats.2013.ba}}
                 <th>Year</th>
     			<th>Games</th>
     			<th>Plate Appearances</th>
                 <th>Runs</th>
+		{{else}}
+			<th>Year</th>
+			<th>Games</th>
+			<th>Innings Pitched</th>	
+			<th>Win-Loss</th>
+		{{/if}}
     			<!-- 
                 <th>Home Runs</th>
     			<th>RBI</th>
@@ -91,10 +98,17 @@
 
 <template name="output-stats">
 	<tr>
-		<td>{{year}}</td>	
-		<td>{{g}}</td>	
-		<td>{{pa}}</td>	
-		<td>{{r}}</td>	
+		{{#if r}}
+			<td>{{year}}</td>	
+			<td>{{g}}</td>	
+			<td>{{pa}}</td>	
+			<td>{{r}}</td>	
+		{{else}}
+			<td>{{year}}</td>
+			<td>{{g}}</td>
+			<td>{{ip}}</td>
+			<td>{{wins}} - {{losses}}</td>
+		{{/if}}
 		<!-- <td>{{hr}}</td>	
 		<td>{{rbi}}</td>	
 		<td>{{sb}}</td>	
