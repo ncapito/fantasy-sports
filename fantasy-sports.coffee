@@ -9,9 +9,40 @@ Relief = new Meteor.Collection "relief"
 Overall = new Meteor.Collection "overall"
 Position = new Meteor.Collection "position"
 Pitchers = new Meteor.Collection "pitchers"
+Teams = new Meteor.Collection "teams"
 Positions = new Meteor.Collection "positions"
 
+okCancelEvents = (selector, callbacks) -> 
+  ok = callbacks?.ok 
+  cancel = callbacks?.cancel 
+  events = {};
+  events['keyup '+selector+', keydown '+selector+', focusout '+selector] =
+    (evt) ->
+      if (evt.type == "keydown" && evt.which == 27) 
+        # escape = cancel
+        cancel?.call(this, evt);
+
+      else if (evt.type == "keyup" && evt.which == 13 || evt.type == "focusout")
+        # blur/return/enter = ok/submit if non-empty
+        value = String(evt.target.value || "");
+        if (value)
+            ok?.call(this, value, evt);
+        else
+            cancel?.call(this, evt);
+  return events;
+
 if Meteor.isClient
+    listsHandle = Meteor.subscribe('lists')
+    Template.teams.loading =  () ->
+        return !teamsHandle.ready();
+    Template.teams.teams = () ->
+        return Teams.find({}, {sort: {name: 1}});
+    Template.teams.events(okCancelEvents(
+      '#new-team',{
+          ok: (text, evt)->
+            id = Teams.insert({name: text});
+      }
+    ));
     $(document).ready ->
         $('body').delegate '.playerPopover', 'click' , (event)->
             if $(this).data('playerPopover')
